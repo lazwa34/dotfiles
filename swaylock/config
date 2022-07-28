@@ -1,0 +1,6 @@
+color=#000000
+indicator-caps-lock
+show-failed-attempts
+ignore-empty-password
+indicator-idle-visible
+daemonize
