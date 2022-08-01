@@ -1,5 +1,5 @@
 {
-    "output": "DP-2",
+    // "output": "DP-2",
     "layer": "top",
     "position": "top",
     "height": 26,
@@ -32,6 +32,7 @@
         // "custom/left2", "custom/left",
         "pulseaudio",
         // "custom/left2", "custom/left",
+        "backlight",
         "battery",
         "custom/left2",
         "custom/poweroff"
@@ -88,8 +89,11 @@
     },
 
     "backlight": {
-        "format": "{percent}% {icon}",
-        "format-icons": ["", ""]
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", ""],
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-"
     },
 
     "battery": {
@@ -98,10 +102,10 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
         "format-icons": ["", "", "", "", ""]
     },
 

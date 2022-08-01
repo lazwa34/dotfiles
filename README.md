@@ -8,16 +8,18 @@ cp -r dotfiles/* ~/.config/
 cp dotfiles/.zshrc ~/
 ```
 
-### The following packages need to be installed
+### The following packages need to be installed and config
 
+### 
 ```bash
 yay -S alactirry kitty
 yay -S waybar swaybg swaylock wlogout
 yay -S mako kanshi xfce-polkit network-manager-applet
-yay -S ranger exa light rofi
+yay -S ranger exa light rofi-lbonn-wayland-git
 yay -S pavucontrol blueberry
 ```
 
+#### Setting greet
 ```bash
 yay -S greetd greetd-tuigreet
 systemctl enable greetd
@@ -40,4 +42,19 @@ command = "tuigreet --user-menu --asterisks --cmd wayfire"
 # on the greeter. A graphical greeter may for example require the user to be
 # in the `video` group.
 user = "lazywa"
+```
+
+#### Setting Nemo
+```bash
+# Fix open in terminal
+gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
+```
+
+### Setting backlight
+```bash
+yay -S brightnessctl
+
+# use
+brightnessctl set 5%-
+brightnessctl set 5%+
 ```
