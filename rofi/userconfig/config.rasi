@@ -1,0 +1,108 @@
+configuration{
+    modi: "run,drun";
+    combi-modi: "run,drun";
+    lines: 5;
+    font: "ComicMono NF Regular 10";
+    show-icons: true;
+    icon-theme: "Oranchelo";
+    terminal: "st";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun: "   Apps ";
+    display-run: "   Run ";
+    display-window: " 﩯  window";
+    display-Network: " 󰤨  Network";
+    sidebar-mode: true;
+    /* matching: "fuzzy"; */
+    terminal: "kitty";
+}
+
+@theme "catppuccin"
+
+element-text, element-icon , mode-switcher {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+window {
+    width: 540px;
+    height: 360.0px;
+    border: 3.0px;
+    border-color: @border-col;
+    background-color: @bg-col;
+    border-radius: 5.0px;
+}
+
+mainbox {
+    background-color: @bg-col;
+}
+
+inputbar {
+    children: [prompt,entry];
+    background-color: @bg-col;
+    border-radius: 5.0px;
+    padding: 2.0px;
+}
+
+prompt {
+    background-color: @blue;
+    padding: 6.0px;
+    text-color: @bg-col;
+    border-radius: 3.0px;
+    margin: 20.0px 0.0px 0.0px 10.0px;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+}
+
+entry {
+    padding: 6.0px;
+    margin: 20.0px 0.0px 0.0px 5.0px;
+    text-color: @fg-col;
+    background-color: @bg-col;
+}
+
+listview {
+    border: 0.0px 0.0px 0.0px;
+    padding: 6.0px 0.0px 0.0px;
+    margin: 10.0px 0.0px 0.0px 10.0px;
+    columns: 2;
+    background-color: @bg-col;
+}
+
+element {
+    padding: 5.0px;
+    background-color: @bg-col;
+    text-color: @fg-col  ;
+}
+
+element-icon {
+    size: 15.0px;
+}
+
+element selected {
+    background-color:  @selected-col ;
+    text-color: @bg-col  ;
+    border-radius: 5.0px;
+}
+
+mode-switcher {
+    spacing: 0;
+  }
+
+button {
+    padding: 10.0px;
+    background-color: @bg-col-light;
+    text-color: @grey;
+    vertical-align: 0.5; 
+    horizontal-align: 0.5;
+}
+
+button selected {
+    background-color: @border-col;
+    text-color: @bg-col-light;
+}

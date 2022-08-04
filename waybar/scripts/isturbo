@@ -1,0 +1,9 @@
+#!/bin/bash
+
+isturbo=`cat /sys/devices/system/cpu/intel_pstate/no_turbo`
+
+if [ $isturbo -eq '0' ]; then
+    echo -e "activete\n"
+else
+    echo -e "inactive\n"
+fi

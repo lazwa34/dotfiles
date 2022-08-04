@@ -6,57 +6,64 @@
 }
 
 window#waybar {
-    background-color: #DC9FB4;
+    background-color: rgb(17, 17, 27);
     border-bottom: 0px solid #000000;
 }
 
 #clock,
+#idle_inhibitor,
+#custom-weather,
 #pulseaudio,
 #bluetooth,
 #tray,
 #language,
 #window,
-#taskbar,
 #cpu,
 #battery,
 #network,
 #backlight,
 #memory
 {
-    background: #FEDFE1;
-    color: #35557c;
-    padding: 0 10px;
+    background: rgb(69, 71, 90);
+    color: rgb(239, 241, 245);
+    padding: 0 5px;
     margin: 0 0px;
-}zz
+}
 
 #taskbar
 {
-    background: #FEDFE1;
-    color: #35557c;
-    padding: 0 0px;
-    margin: 0 0px;
+    background: rgb(69, 71, 90);
+    border: 0;
+    color: rgb(239, 241, 245);
+    padding: 0 1px;
+    margin: 0 0;
+}
+
+#taskbar button {
+    border: 0;
 }
 
 #taskbar button:hover {
-    box-shadow: inset 0 -26px 10px #D0104C;
+    background: rgb(69, 71, 90);
+    box-shadow: inset 0 -3px rgb(246, 197, 85);
 }
 
 #taskbar button.active {
-    background: #D0104C;
+    box-shadow: inset 0 -3px rgb(246, 197, 85);
 }
 
 #custom-poweroff,
 #custom-launcher
 {
-    color: #35557c;
-    padding: 0 0 0 10px;
+    color: rgb(239, 241, 245);
+    padding: 0 5px 0 5px;
     margin: 0 0px;
 }
 
 #custom-right,
 #custom-left {
     font-size: 20px;
-    color: #FEDFE1;
+    color: rgb(69, 71, 90);
     padding: 0 0px;
     margin: 0 0px;
 }
@@ -64,8 +71,8 @@ window#waybar {
 #custom-right2,
 #custom-left2 {
     font-size: 20px;
-    color: #DC9FB4;
-    background: #FEDFE1;
+    color: rgb(17, 17, 27);
+    background: rgb(69, 71, 90);
     padding: 0 0px;
     margin: 0 0px;
 }

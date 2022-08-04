@@ -8,18 +8,25 @@ cp -r dotfiles/* ~/.config/
 cp dotfiles/.zshrc ~/
 ```
 
-### The following packages need to be installed and config
+### Install some packages
 
-### 
 ```bash
 yay -S alactirry kitty
-yay -S waybar swaybg swaylock wlogout
+yay -S waybar swaybg swaylock swayidle wlogout
 yay -S mako kanshi xfce-polkit network-manager-applet
-yay -S ranger exa light rofi-lbonn-wayland-git
-yay -S pavucontrol blueberry
+yay -S ranger exa brightnessctl rofi-lbonn-wayland-git
+yay -S pavucontrol blueberry blueman
+```
+
+### Install Nerd Fonts & icon theme
+
+```bash
+yay -S nerd-fonts-cascadia-code nerd-fonts-jetbrains-mono nerd-fonts-robotomono
+yay -S oranchelo-icon-theme
 ```
 
 #### Setting greet
+
 ```bash
 yay -S greetd greetd-tuigreet
 systemctl enable greetd
@@ -45,12 +52,14 @@ user = "lazywa"
 ```
 
 #### Setting Nemo
+
 ```bash
 # Fix open in terminal
-gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
+gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty
 ```
 
 ### Setting backlight
+
 ```bash
 yay -S brightnessctl
 
@@ -58,3 +67,12 @@ yay -S brightnessctl
 brightnessctl set 5%-
 brightnessctl set 5%+
 ```
+
+### Setting themes
+
+See [catppuccin](https://github.com/catppuccin/catppuccin)
+
+- [alacritty](https://github.com/catppuccin/alacritty)
+- [kitty](https://github.com/catppuccin/kitty)
+- [rofi](https://github.com/catppuccin/rofi)
+- [mako](https://github.com/catppuccin/mako)
