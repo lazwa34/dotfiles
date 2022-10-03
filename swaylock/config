@@ -1,4 +1,8 @@
 color=#000000
+image=$HOME/Pictures/wallpaper/wallhaven-1k6y7g.jpg
+scaling=fill
+indicator-radius=100
+indicator-thickness=20
 indicator-caps-lock
 show-failed-attempts
 ignore-empty-password

@@ -1,32 +1,44 @@
 {
-    // "output": "DP-2",
-    "layer": "top",
-    "position": "top",
-    "height": 26,
+    "layer": "bottom",
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 31,
 
     "modules-left": [
-        "custom/launcher", "custom/right2",
-        "wlr/taskbar", "custom/right"
-        // "custom/right2", "custom/right"
+        "custom/launcher",
+        "wlr/taskbar"
     ],
 
     // "modules-center": [
-    //     "custom/left", "custom/left2",
-    //     "custom/left", "clock#1", "custom/right"
-    //     "custom/right2", "custom/right"
     // ],
 
     "modules-right": [
-        // "custom/left", "custom/left2",
-        "custom/left", "tray",
-        "custom/left2", "custom/left",
-        "cpu", "memory",
-        "custom/left2", "custom/left",
-        "idle_inhibitor", "pulseaudio", "backlight", "battery",
-        "custom/left2",
-        "custom/left", "clock#1",
-        "custom/left2", "custom/poweroff"
+        "tray",
+        "idle_inhibitor",
+        "cpu",
+        "memory",
+        // "disk",
+        // "temperature",
+        "pulseaudio",
+        "backlight",
+        "battery",
+        "clock"
     ],
+
+    // Modules configuration
+    "tray": {
+        "icon-size": 16,
+        "show-passive-items": true,
+        "spacing": 5
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 18,
+        "icon-theme": "Tela-yellow",
+        "tooltip-format": "{title}",
+        "on-click": "minimize-raise",
+        "on-click-middle": "close"
+    },
 
     "idle_inhibitor": {
         "format": "{icon} ",
@@ -36,57 +48,50 @@
         }
     },
 
-    "tray": {
-        "icon-size": 16,
-        "show-passive-items": true,
-        "spacing": 5
-    },
-
     "clock": {
-        "timezone": "Asia/Shanghai",
-        "format": "  {:%H:%M}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{date}</tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
-
-	"clock#1": {
         "interval": 1,
-        "timezone": "Asia/Shanghai",
         "locale": "en_US.UTF-8",
-		"format": "{:%H:%M:%S}", // {:%H:%M:%S}
-        "format-calendar": "<span color='#ff0000'><b>{}</b></span>",
-        "format-calendar-weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y/%m/%d %a}"
-	},
+        "timezones": [
+            "Asia/Shanghai"
+        ],
+        "tooltip-format": "{:%A %B %d %Y | %H:%M}",
+        // "format": " {:%I:%M %p}",	//12 hour format
+        "format": " {:%H:%M}", //24 hour format
+        "format-alt": " {:%d/%m/%Y  %H:%M:%S}"
+    },
 
     "cpu": {
         "interval": 2,
-        "format": " {usage}%",
+        "format": " {usage}%",
         "on-click": "alacritty --class=btop,btop -e btop"
     },
 
     "memory": {
-        "interval": 10,
-        "format": " {used:0.1f}G",
+        "interval": 5,
+        "format": " {}%",
         "on-click": "alacritty --class=btop,btop -e btop"
     },
 
     "temperature": {
+        "interval": 2,
+        "thermal-zone": 1,
+        "hwmon-path": "/sys/class/hwmon/hwmon6/temp1_input",
         "critical-threshold": 80,
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        "format-critical": " {temperatureC}°C",
+        "format": " {temperatureC}°C"
     },
 
     "backlight": {
         "device": "intel_backlight",
         "format": "{icon} {percent}%",
-        "format-icons": ["", "滛"],
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
         "on-scroll-up": "brightnessctl set 5%+",
-        "on-scroll-down": "brightnessctl set 5%-"
+        "on-scroll-down": "brightnessctl set 5%-",
+        "on-click": "bash $HOME/.config/waybar/scripts/background-changer"
     },
 
     "battery": {
+        "interval": 10,
         "states": {
             "good": 95,
             "warning": 30,
@@ -95,89 +100,47 @@
         "format": "{icon} {capacity}%",
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {time}",
-        "format-icons": ["", "", "", "", ""]
+        // "format-alt": "{icon} {time}",
+        "format-icons": [
+            "", "", "", "", "", "", "", "", "", ""
+        ]
     },
 
     "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "interface": "wlan0", // (Optional) To force the use of this interface
+        "format": "⚠ Disabled",
+        "format-wifi": " {signalStrength}% {essid} ↑ {bandwidthUpBits} ↓ {bandwidthDownBits}",
+        "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
+        "format-disconnected": "⚠ Disconnected",
+        "interval": 1
     },
 
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "hands-free": "",
+            "headset": "",
             "default": ["", "", ""]
         },
+        "on-scroll-up": "$HOME/.config/waybar/scripts/set_voice +1%",
+        "on-scroll-down": "$HOME/.config/waybar/scripts/set_voice -1%",
+        "on-click-middle": "$HOME/.config/waybar/scripts/set_voice 0",
         "on-click": "pavucontrol"
     },
 
-    "bluetooth": {
-        "format": " on",
-        "format-disabled": " off",
-        "format-connected": " on",
-        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-        "on-click": "blueberry",
-        "on-click-right": "killall blueberry"
-    },
-
     "custom/launcher": {
-        "format": " ",
+        "format": "",
         "icon-size": 16,
         "tooltip": false,
         "on-click": "rofi -show drun",
         "on-click-middle": "killall rofi",
-        "on-click-right": "bash $HOME/.config/waybar/scripts/background-changer"
-    },
-    "custom/poweroff": {
-        "tooltip": false,
-        "format": " ",
-        "on-click": "wlogout",
-        "on-click-middle": "killall wlogout"
+        "on-click-right": "wlogout"
     },
 
-    "wlr/taskbar": {
-        "format": "{icon}",
-        "icon-size": 16,
-        "icon-theme": "Tela-yellow",
-        "tooltip-format": "{title}",
-        "on-click": "minimize-raise",
-        "on-click-middle": "close"
-    },
-
-    "custom/weather": {
-        "exec": "echo $(curl 'https://wttr.in/hefei?format=%c%t')",
-        "interval": 3600,
-        "on-click": "xdg-open https://wttr.in/hefei"
-    },
-
-    "custom/left": {
-        "format": "",
-        "tooltip": false
-    },
-
-    "custom/left2": {
-        "format": "",
-        "tooltip": false
-    },
-
-    "custom/right": {
-        "format": "",
-        "tooltip": false
-    },
-
-    "custom/right2": {
-        "format": "",
-        "tooltip": false
+    "disk": {
+        "interval": 30,
+        "format": "🖫 {percentage_used}%",
+        "on-click": "nautilus"
     }
 }

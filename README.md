@@ -12,7 +12,7 @@ cp dotfiles/.zshrc ~/
 
 ```bash
 yay -S alactirry kitty
-yay -S waybar swaybg swaylock swayidle wlogout
+yay -S waybar swaybg swaylock swayidle wlogout wpaperd
 yay -S mako kanshi xfce-polkit network-manager-applet
 yay -S ranger exa brightnessctl rofi-lbonn-wayland-git
 yay -S pavucontrol blueberry blueman

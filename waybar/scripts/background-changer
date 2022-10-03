@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 wallpapers_path="$HOME/Pictures/wallpaper"
-pid=`pidof swaybg | awk '{print $1}'`
+pid=`pidof wpaperd | awk '{print $1}'`
 
 echo old process $pid need be killed!!!
+wpaperd
 
-swaybg -i $(find $wallpapers_path -type f | shuf -n 1) -m fill &
 sleep 5
 
 kill $pid

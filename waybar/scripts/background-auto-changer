@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+while true; do
+    bash $HOME/.config/waybar/scripts/background-changer
+    sleep 60m
+done

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+count=$(env LANG=en_US.UTF-8 pactl list sinks | grep Sink | awk '{print $2}' | sed 's/#//')
+
+for i in $count
+do
+    voice=$(pactl get-sink-volume $i | awk '{print $5}' | sed 's/%//')
+    if [ $1 = "0" ]; then
+        pactl set-sink-volume $i 0%
+        voice=$(pactl get-sink-volume $i | awk '{print $5}' | sed 's/%//')
+    elif [ $voice -le 100 -a $voice -ge 0 ]; then
+        pactl set-sink-volume $i $1
+        voice=$(pactl get-sink-volume $i | awk '{print $5}' | sed 's/%//')
+    fi
+    if [ $voice -ge 100 ]; then
+        pactl set-sink-volume $i 100%
+        voice=$(pactl get-sink-volume $i | awk '{print $5}' | sed 's/%//')
+    fi
+done

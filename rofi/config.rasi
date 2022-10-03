@@ -1,6 +1,6 @@
 configuration{
-    modi: "drun,run";
-    icon-theme: "Tela-yellow";
+    modi: "run,drun,window";
+    icon-theme: "Papirus-Dark";
     show-icons: true;
     terminal: "alacritty";
     drun-display-format: "{icon} {name}";
